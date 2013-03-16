@@ -3,16 +3,30 @@
 	<!-- load javascript functions -->
 	<script src="JS/insertImage.js"></script>
 	<script src="JS/animateAvatar.js"></script>
+
+	<script type="text/javascript">
+	var currPic=1;
+	var totPics=3;
+	var keepTime;
+
+	function scheduleNextFrame(){ 
+		keepTime=setTimeout("changePic()", 1000); 
+	}
+	function changePic(){
+		nextFrame();
+		scheduleNextFrame(); 
+	}
+	</script>
+
 </head>
 
 <body>
 	<h1>Avatars:</h1>
-	<div id="avatars">
-		<div id="1"> <!-- TODO replace this with function to get correct #-->
-			<image src='images/RGB.png' oncanplay='animate()' />
-		</div>
+	<div id="avatars" onload="setupPicChange();">
+		<image id='avatar1' src='images/animations/running/0.png' />
 	<!--	<image src='images/RGB.png' />	-->
 	</div>
 	<button type="button" onclick="insertImage()">add avatar</button>
+	<button type="button" onclick="oneFrameAll()">animate avatars</button>
 </body>
 </html>
