@@ -1,35 +1,39 @@
 <html>
 <head>
+	<script type="text/javascript">
+		//animation image size:
+		var animationSize = "ani_vSmall";
+		//var animationSize = "anim_small";
+		//var animationSize = "animations";
+
+		var keepTimeHandle = new Array();
+
+		//animation speeds:
+		var animationSpeed = new Array();
+		animationSpeed[0] = 1000;
+		animationSpeed[1] = 1000;
+		animationSpeed[2] = 1000;
+		animationSpeed[3] = 1000;
+		animationSpeed[4] = 1000;
+		animationSpeed[5] = 1000;
+		animationSpeed[6] = 500;
+		animationSpeed[7] = 100;
+		animationSpeed[8] = 10;
+	</script>
+
 	<!-- load javascript functions -->
 	<script src="JS/insertImage.js"></script>
 	<script src="JS/animateAvatar.js"></script>
+	<script src="JS/animationScheduler.js"></script>
 
-	<script type="text/javascript">
-	var currPic=1;
-	var totPics=3;
-	var keepTime;
-
-	function scheduleNextFrame(){ 
-		keepTime=setTimeout("changePic()", 1000); 
-	}
-	function changePic(){
-		nextFrame();
-		scheduleNextFrame(); 
-	}
-	</script>
-
-
-
-Read more: How to Make a Web Page Picture Change With Time | eHow.com http://www.ehow.com/how_7375163_make-picture-change-time.html#ixzz2NSHXUeeo
 </head>
 
 <body>
 	<h1>Avatars:</h1>
-	<div id="avatars" onload="setupPicChange();">
-		<image id='avatar1' src='images/animations/running/0.png' />
-	<!--	<image src='images/RGB.png' />	-->
+	<div id="avatars">
+	<!--	<image id='avatar1' src='images/animations/running/0.png' /> -->
 	</div>
-	<button type="button" onclick="insertImage()">add avatar</button>
+	<button type="button" onclick="insertImage(animationSize)">add avatar</button>
 	<button type="button" onclick="oneFrameAll()">animate avatars</button>
 </body>
 </html>
