@@ -34,6 +34,9 @@ function nextFrame(avatarIdToChange){
 	//I don't really need 0-2, 3-5 need to stay the same, 6 needs to be changed
 	var oldFrameN = splitSrc[6].substr(0,splitSrc[6].length-4);	//remove extension
 	var newFrameN = parseInt(oldFrameN) + 1;
+
+	//TODO: check for animationSpeed low enough to be passive and set alternative to splitSrc[5]
+
 	var newSrc = splitSrc[3] +'/'+ splitSrc[4] +'/'+ splitSrc[5] +'/'+ newFrameN + ".png";
 
 	if ( ! UrlExists(newSrc,newFrameN) ){	//if animation not found

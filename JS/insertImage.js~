@@ -7,8 +7,8 @@ function insertImage(animationSize) {
 			document.getElementById('avatars').innerHTML+="<image id='"+newAvatarId+"' src='images/"+animationSize+"/running/0.png' />";
 
 			//schedule first frame change
-			var newAvatarElement = document.getElementById(newAvatarId);
-			keepTimeHandle[avatarN] = setInterval(function(){nextFrame(newAvatarElement)},animationSpeed[avatarN]);
+			//var newAvatarElement = document.getElementById(newAvatarId);
+			keepTimeHandle[avatarN] = setInterval(function(){nextFrame(newAvatarId)},animationSpeed[avatarN]);
 //			scheduleNextFrame(newAvatarElement);// call animation nextFrame scheduler
 			console.log(newAvatarId + " added");
 			break;	//exit the for loop
@@ -16,9 +16,28 @@ function insertImage(animationSize) {
 	}
 }
 
-function insertAvatars(){
-	var nAvatars = 1;
+function insertNAvatars(){
+	var nAvatars = 100;
 	for(var i = 0; i < nAvatars ; i++){
 		insertImage(animationSize);
 	}
+}
+
+function insertAvatars(){
+	insertNAvatars();
+}
+
+function insertCountlyAvatars(){
+	/*can maybe connect with something like: 
+	mongo --host ec2-54-234-225-144.compute-1.amazonaws.com
+	for manual operations
+
+	get info via countly interface with:
+	http://testsubdomain.socialvinesolutions.com/o?api_key=AAA & app_id=BBB & method=CCC &
+
+	which is...
+	http://testsubdomain.socialvinesolutions.com/o?api_key=301238f5cbf557a6d4f80d4bb19b97b3da3a22ca&app_id=510892b53f3f90f302000001&method=events&
+--
+*/
+
 }

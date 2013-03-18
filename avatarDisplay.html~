@@ -10,15 +10,11 @@
 
 		//animation speeds:
 		var animationSpeed = new Array();
-		animationSpeed[0] = 700;
-		animationSpeed[1] = 700;
-		animationSpeed[2] = 700;
-		animationSpeed[3] = 700;
-		animationSpeed[4] = 1000;
-		animationSpeed[5] = 1000;
-		animationSpeed[6] = 500;
-		animationSpeed[7] = 100;
-		animationSpeed[8] = 10;
+
+		for( var i = 0; i < 500 ; i++){
+			animationSpeed[i] = Math.floor((Math.random()*1000)+100);
+		}
+		
 	</script>
 
 	<!-- load javascript functions -->
@@ -27,9 +23,11 @@
 	<script src="JS/animateAvatar.js"></script>
 <!-- 
 	<script src="JS/animationScheduler.js"></script>
-	-->
 
 	<script type="text/javascript" src="JS/jquery-1.9.1.min.js"></script>
+	<script src="JS/timers.js"></script>
+-->
+
 </head>
 
 <body onload="insertAvatars()">
@@ -37,8 +35,6 @@
 	<div id="avatars">
 	<!--	<image id='avatar1' src='images/animations/running/0.png' /> -->
 	</div>
-
-	<script src="JS/timers.js"></script>
 
 	<button type="button" onclick="insertImage(animationSize)">add avatar</button>
 <!--	<button type="button" onclick="oneFrameAll()">animate avatars</button>

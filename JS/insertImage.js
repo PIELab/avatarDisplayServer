@@ -16,9 +16,28 @@ function insertImage(animationSize) {
 	}
 }
 
-function insertAvatars(){
-	var nAvatars = 1;
+function insertNAvatars(){
+	var nAvatars = 100;
 	for(var i = 0; i < nAvatars ; i++){
 		insertImage(animationSize);
 	}
+}
+
+function insertAvatars(){
+	insertNAvatars();
+}
+
+function insertCountlyAvatars(){
+	/*can maybe connect with something like: 
+	mongo --host ec2-54-234-225-144.compute-1.amazonaws.com
+	for manual operations
+
+	get info via countly interface with:
+	http://testsubdomain.socialvinesolutions.com/o?api_key=AAA & app_id=BBB & method=CCC &
+
+	which is...
+	http://testsubdomain.socialvinesolutions.com/o?api_key=f9260de6b6495ee559b8f951109d3959&app_id=510892b53f3f90f302000001&method=events&event=brittany%20mackey&action=refresh
+
+*/
+
 }
