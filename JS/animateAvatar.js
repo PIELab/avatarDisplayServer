@@ -43,7 +43,7 @@ function nextFrame(avatarIdToChange){
 		 newSrc = splitSrc[3] +'/'+ splitSrc[4] +'/'+ splitSrc[5]+'/'+"0.png";//reset to 0 animation
 	}
 	avatarElementToChange.src=newSrc;
-	console.log(avatarElementToChange.id + " frame changed to " + avatarElementToChange.src);
+	//console.log(avatarElementToChange.id + " frame changed to " + avatarElementToChange.src);
 } 
 
 // check for file exists at url
@@ -66,7 +66,7 @@ function UrlExists(url, frameN){
 	}else if(animationName == "sleeping"){
 		maxFrames = 9;
 	}else{
-		console.log("animationName '" + animationName +"' not recognized; from "+url.split("/") );
+		console.warn("animationName '" + animationName +"' not recognized; from "+url.split("/") );
 		maxFrames = 3;	//min of all
 	}
 

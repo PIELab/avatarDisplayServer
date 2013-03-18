@@ -1,5 +1,6 @@
 <html>
 <head>
+	<!-- load globals -->
 	<script type="text/javascript">
 		//animation image size:
 		//var animationSize = "ani_vSmall";
@@ -12,9 +13,19 @@
 		var animationSpeed = new Array();
 
 		for( var i = 0; i < 1000 ; i++){
-			animationSpeed[i] = Math.floor((Math.random()*1000)+10);
+			animationSpeed[i] = Math.floor((Math.random()*300)+10);
 		}
 		
+	</script>
+	<!-- load countly JSON -->
+	<script type="text/javascript">
+		var JSONurl="http://testsubdomain.socialvinesolutions.com/o?api_key=f9260de6b6495ee559b8f951109d3959&app_id=510892b53f3f90f302000001&method=events&event=physicalActivity&action=refresh">
+		$.ajax({
+		  dataType: "json",
+		  url: JSONurl,
+		  data: data,
+		  success: success
+		});
 	</script>
 
 	<!-- load javascript functions -->

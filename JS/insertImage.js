@@ -16,7 +16,7 @@ function insertImage(animationSize) {
 //			} else if(animationSpeed[avatarN] < sleepingMax){
 ///				animationName = randomAnim("sleeping");
 			} else {
-				console.log("animationSpeed out of range");
+				console.warn("animationSpeed out of range");
 				animationName = "sleeping";
 			}
 
@@ -26,7 +26,7 @@ function insertImage(animationSize) {
 			//schedule first frame change
 			keepTimeHandle[avatarN] = setInterval(function(){nextFrame(newAvatarId)},animationSpeed[avatarN]);
 
-			console.log(newAvatarId + " added");
+			//console.log(newAvatarId + " added");
 			break;	//exit the for loop
 		}
 	}
@@ -52,8 +52,11 @@ function insertCountlyAvatars(){
 	http://testsubdomain.socialvinesolutions.com/o?api_key=AAA & app_id=BBB & method=CCC &
 
 	which is...
+	for count & sum:
 	http://testsubdomain.socialvinesolutions.com/o?api_key=f9260de6b6495ee559b8f951109d3959&app_id=510892b53f3f90f302000001&method=events&event=brittany%20mackey&action=refresh
 
+	for segmented count & sum (the most recent version):
+http://testsubdomain.socialvinesolutions.com/o?api_key=f9260de6b6495ee559b8f951109d3959&app_id=510892b53f3f90f302000001&method=events&event=physicalActivity&action=refresh
 */
 
 }
@@ -80,7 +83,7 @@ function randomAnim(type){
 	} else if (type == "sleeping"){
 		animationName = 'sleeping';
 	} else{
-		console.log("animation type not recognized");
+		console.warn("animation type not recognized");
 	}
 	return animationName;
 }
