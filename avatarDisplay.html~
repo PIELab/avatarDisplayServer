@@ -2,17 +2,17 @@
 <head>
 	<script type="text/javascript">
 		//animation image size:
-		var animationSize = "ani_vSmall";
+		//var animationSize = "ani_vSmall";
 		//var animationSize = "anim_small";
-		//var animationSize = "animations";
+		var animationSize = "animations";
 
 		var keepTimeHandle = new Array();
 
 		//animation speeds:
 		var animationSpeed = new Array();
 
-		for( var i = 0; i < 500 ; i++){
-			animationSpeed[i] = Math.floor((Math.random()*1000)+100);
+		for( var i = 0; i < 1000 ; i++){
+			animationSpeed[i] = Math.floor((Math.random()*1000)+10);
 		}
 		
 	</script>

@@ -19,7 +19,7 @@ function oneFrameAll() {
 
 // move given image one frame
 function nextFrame(avatarIdToChange){
-	//get old src (minus leading '?/images/animations/' (len=18) and file extension (len=4))
+	//get old src (Maxus leading '?/images/animations/' (len=18) and file extension (len=4))
 	//var fullOldSrc = avatarElement.src.split("/images/animations/")[1]; 
 	var avatarElementToChange = document.getElementById(avatarIdToChange);
 	var splitSrc = avatarElementToChange.src.split("/");
@@ -35,7 +35,7 @@ function nextFrame(avatarIdToChange){
 	var oldFrameN = splitSrc[6].substr(0,splitSrc[6].length-4);	//remove extension
 	var newFrameN = parseInt(oldFrameN) + 1;
 
-	//TODO: check for animationSpeed low enough to be passive and set alternative to splitSrc[5]
+
 
 	var newSrc = splitSrc[3] +'/'+ splitSrc[4] +'/'+ splitSrc[5] +'/'+ newFrameN + ".png";
 
@@ -49,7 +49,27 @@ function nextFrame(avatarIdToChange){
 // check for file exists at url
 function UrlExists(url, frameN){
 	//this is a quick hack which works much better:
-	var maxFrames = 11;
+	var animationName = url.split("/")[2];
+	var maxFrames = 5;
+	if (animationName == "running"){
+		maxFrames = 11;
+	}else if(animationName == "basketball" ){
+		maxFrames = 9;
+	}else if(animationName == "bicycling" ){
+		maxFrames = 9;
+	}else if(animationName == "onComputer"){
+		maxFrames = 5;
+	}else if(animationName == "videoGames" ){
+		maxFrames = 3;
+	}else if(animationName == "watchingTV" ){
+		maxFrames = 9;
+	}else if(animationName == "sleeping"){
+		maxFrames = 9;
+	}else{
+		console.log("animationName '" + animationName +"' not recognized; from "+url.split("/") );
+		maxFrames = 3;	//min of all
+	}
+
 	if (frameN > maxFrames){	//TODO: can get this from url (as well as animation if desired)
 		return false;
 	} else{
