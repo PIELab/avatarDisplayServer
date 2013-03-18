@@ -10,10 +10,10 @@
 
 		//animation speeds:
 		var animationSpeed = new Array();
-		animationSpeed[0] = 1000;
-		animationSpeed[1] = 1000;
-		animationSpeed[2] = 1000;
-		animationSpeed[3] = 1000;
+		animationSpeed[0] = 700;
+		animationSpeed[1] = 700;
+		animationSpeed[2] = 700;
+		animationSpeed[3] = 700;
 		animationSpeed[4] = 1000;
 		animationSpeed[5] = 1000;
 		animationSpeed[6] = 500;
@@ -23,17 +23,27 @@
 
 	<!-- load javascript functions -->
 	<script src="JS/insertImage.js"></script>
+	
 	<script src="JS/animateAvatar.js"></script>
+<!-- 
 	<script src="JS/animationScheduler.js"></script>
+	-->
 
+	<script type="text/javascript" src="JS/jquery-1.9.1.min.js"></script>
 </head>
 
-<body>
+<body onload="insertAvatars()">
 	<h1>Avatars:</h1>
 	<div id="avatars">
 	<!--	<image id='avatar1' src='images/animations/running/0.png' /> -->
 	</div>
+
+	<script src="JS/timers.js"></script>
+
 	<button type="button" onclick="insertImage(animationSize)">add avatar</button>
-	<button type="button" onclick="oneFrameAll()">animate avatars</button>
+<!--	<button type="button" onclick="oneFrameAll()">animate avatars</button>
+-->
+
+<input type="submit" name="increment" value="Increment" />
 </body>
 </html>
