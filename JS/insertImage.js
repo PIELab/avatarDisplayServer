@@ -21,7 +21,8 @@ function insertImage(animationSize) {
 			}
 
 			//insert new avatar
-			document.getElementById('avatars').innerHTML+="<image id='"+newAvatarId+"' src='images/"+animationSize+"/"+animationName+"/0.png' />";
+			document.getElementById('avatars').innerHTML+=
+			     "<image id='"+newAvatarId+"' src='images/"+animationSize+"/"+animationName+"/0.png' title = '"+newAvatarId+"'/>";
 		
 			//schedule first frame change
 			keepTimeHandle[avatarN] = setInterval(function(){nextFrame(newAvatarId)},animationSpeed[avatarN]);
@@ -33,7 +34,7 @@ function insertImage(animationSize) {
 }
 
 function insertNAvatars(){
-	var nAvatars = 100;
+	var nAvatars = 200;
 	for(var i = 0; i < nAvatars ; i++){
 		insertImage(animationSize);
 	}

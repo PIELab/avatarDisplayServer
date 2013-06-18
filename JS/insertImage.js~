@@ -16,12 +16,13 @@ function insertImage(animationSize) {
 //			} else if(animationSpeed[avatarN] < sleepingMax){
 ///				animationName = randomAnim("sleeping");
 			} else {
-				console.log("animationSpeed out of range");
+				console.warn("animationSpeed out of range");
 				animationName = "sleeping";
 			}
 
 			//insert new avatar
-			document.getElementById('avatars').innerHTML+="<image id='"+newAvatarId+"' src='images/"+animationSize+"/"+animationName+"/0.png' />";
+			document.getElementById('avatars').innerHTML+=
+			     "<image id='"+newAvatarId+"' src='images/"+animationSize+"/"+animationName+"/0.png' title = '"+newAvatarId+"'/>";
 		
 			//schedule first frame change
 			keepTimeHandle[avatarN] = setInterval(function(){nextFrame(newAvatarId)},animationSpeed[avatarN]);
@@ -33,7 +34,7 @@ function insertImage(animationSize) {
 }
 
 function insertNAvatars(){
-	var nAvatars = 100;
+	var nAvatars = 104;
 	for(var i = 0; i < nAvatars ; i++){
 		insertImage(animationSize);
 	}
