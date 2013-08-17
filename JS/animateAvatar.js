@@ -31,7 +31,106 @@ function nextFrame(avatarIdToChange,avatarN){
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height); //clear canvas
 	drawAvatar(ctx, avatarN, getAnimationFrameSource(avatarN,CURRENT_FRAME[avatarN]));
+	drawFace(ctx,avatarN);
 } 
+
+// draw face onto given avatar
+function drawFace(context, avatarN){
+	//TODO: these values (except rotation) should be scaled by ANIMATION_SIZE
+	var xLoc = 0;
+	var yLoc = 0;
+	var s = 40;	//size (in px)	
+	var r = 0; //rotation (in radians)
+	var DEG2RAD = 3.1415/360.0;	//conversion factor for deg to radians
+
+	var center = 150;	
+
+	// === ACTIVE ===
+	if(ANIMATION_ACTIVITY[avatarN] == "running"){
+		xLoc = center-32;
+		yLoc = center-106;
+		s = 84;
+		//static location for all frames
+	} else if(ANIMATION_ACTIVITY[avatarN] == "basketball"){
+		//load location based on current frame of body animation
+		//find body animation
+		switch (CURRENT_FRAME[avatarN]){
+			case 0:
+			case 1:
+			case 2:
+				xLoc = center+20;
+				yLoc = center+31;
+				s = 40;
+				break;
+			case 3:
+				xLoc = center+20;
+				yLoc = center+21;
+				s = 40;
+				break;
+			case 4:
+				xLoc = center+21;
+				yLoc = center+16;
+				s = 40;
+				r = -10.0 * DEG2RAD;
+				break;
+			case 5:
+				xLoc = center+20;
+				yLoc = center+21;
+				s = 40;
+				break;
+			case 6:
+				xLoc = center+21;
+				yLoc = center+29;
+				s = 40;
+				break;
+			case 7:
+			case 8:
+			case 9:
+				xLoc = center+21;
+				yLoc = center+29;
+				s = 40;
+				break;
+			default:
+				cosole.warn('animateAvatar.drawFace has bad frame #:'+CURRENT_FRAME[avatarN]);
+				break;
+			}
+		} else if(ANIMATION_ACTIVITY[avatarN] == "bicycling"){
+			xLoc = center-33;
+			yLoc = center-90;
+			s = 90;
+			r = -7.0 * DEG2RAD;
+		// === ASLEEP ===
+		} else if(ANIMATION_ACTIVITY[avatarN] == "sleeping"){
+			s = 0;	//size 0 so it won't show
+		// === PASSIVE ===
+		} else if(ANIMATION_ACTIVITY[avatarN] == "onComputer"){
+			xLoc = center+37;
+			yLoc = center-62;
+			s = 79;
+		} else if(ANIMATION_ACTIVITY[avatarN] == "videoGames"){
+			xLoc = center+108;
+			yLoc = center-50;
+			s = 50;
+		} else if(ANIMATION_ACTIVITY[avatarN] == "watchingTV"){
+			xLoc = center+26;
+			yLoc = center-107;
+			s = 84;
+			// === DEFAULT === 
+		} else {
+			console.warn("drawFace() does not recognize activity name"+ANIMATION_ACTIVITY[avatarN])
+		}
+
+
+	var imageObj = new Image();
+	imageObj.src = FACE_IMAGE[avatarN];
+	imageObj.onload = function() {
+		context.translate(xLoc-s/2, yLoc-s/2);
+		context.rotate(r);
+		context.drawImage(imageObj,0, 0, s, s);
+		context.rotate(-r);
+		context.translate(-xLoc+s/2, -yLoc+s/2);
+	};
+}
 
 // check for file exists at url
 function UrlExists(animationName, frameN){

@@ -9,9 +9,6 @@ function drawAvatarAnim(avatarN){
 
 	//schedule first frame change
 	TIMER_HANDLE[avatarN] = setInterval(function(){nextFrame(newAvatarId,avatarN)},ANIMATION_SPEED[avatarN]);
-
-	ctx.fillStyle='#FF0000';
-	ctx.fillRect(1,5,80,100);
 }
 
 // draw avatar onto given canvas
@@ -20,7 +17,7 @@ function drawAvatar(ctx,avatarN,source){
 
 	var imageObj = new Image();
    imageObj.onload = function() {
-     ctx.drawImage(imageObj,0, 0);
+   	ctx.drawImage(imageObj,0, 0);
    };
 	imageObj.src = source;
 }
