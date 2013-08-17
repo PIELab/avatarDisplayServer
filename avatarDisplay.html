@@ -4,22 +4,7 @@
 	<script type="text/javascript" src="JS/jquery-1.9.1.min.js"></script>
 	
 	<!-- load globals -->
-	<script type="text/javascript">
-		//animation image size:
-		//var animationSize = "ani_vSmall";
-		//var animationSize = "anim_small";
-		var animationSize = "animations";
-
-		var keepTimeHandle = new Array();
-
-		//animation speeds:
-		var animationSpeed = new Array();
-
-		for( var i = 0; i < 1000 ; i++){
-			animationSpeed[i] = Math.floor((Math.random()*300)+10);
-		}
-		
-	</script>
+	<script type="text/javascript" src="JS/globals.js"></script>
 	<!-- load countly JSON -->
 	<script type="text/javascript">
 		var countlyData
@@ -33,7 +18,7 @@
 	</script>
 
 	<!-- load javascript functions -->
-	<script src="JS/insertImage.js"></script>
+	<script src="JS/avatarInserter.js"></script>
 	
 	<script src="JS/animateAvatar.js"></script>
 
@@ -42,6 +27,8 @@
 <body onload="insertAvatars()">
 	<h1>Avatars:</h1>
 	<div id="avatars">
+		<canvas id="avatar0" height="300" width="300" onclick="drawAvatarAnim()"></canvas>
+		<canvas id="avatar1" height="100" width="100"></canvas>
 	<!--	<image id='avatar1' src='images/animations/running/0.png' /> -->
 	</div>
 
