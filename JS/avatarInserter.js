@@ -1,6 +1,5 @@
 // draw avatar canvas & start animation
-function drawAvatarAnim(){
-	avatarN = 0;
+function drawAvatarAnim(avatarN){
 	var newAvatarId = 'avatar'+avatarN;
 
 	var canvas=document.getElementById(newAvatarId);
@@ -9,7 +8,7 @@ function drawAvatarAnim(){
 	drawAvatar(ctx,avatarN,getInitialAnimationFrameSource(avatarN));
 
 	//schedule first frame change
-	keepTimeHandle[avatarN] = setInterval(function(){nextFrame(newAvatarId)},animationSpeed[avatarN]);
+	keepTimeHandle[avatarN] = setInterval(function(){nextFrame(newAvatarId,avatarN)},animationSpeed[avatarN]);
 
 	ctx.fillStyle='#FF0000';
 	ctx.fillRect(1,5,80,100);
@@ -26,8 +25,21 @@ function drawAvatar(ctx,avatarN,source){
 	imageObj.src = source;
 }
 
+function insertAvatarCanvas(newAvatarId,avatarN){
+	if(document.getElementById(newAvatarId) == null) {	//if avatar does not yet exist
+		var newHTML = '<canvas id="'+newAvatarId+'" height="300" width="300" onLoad="drawAvatarAnim('+avatarN+')" title="'+newAvatarId+'" </canvas>';
+		//console.log(newHTML);
+		//insert new avatar
+		document.getElementById('avatars').innerHTML+= newHTML;
+		//schedule first frame change
+		keepTimeHandle[avatarN] = setInterval(function(){nextFrame(newAvatarId,avatarN)},animationSpeed[avatarN]);
+
+		//console.log(newAvatarId + " added");
+	}
+}
+
 // insert avatar image into document
-function insertImage(animationSize) {
+function insertImage() {
 	var MAX_AVATARS = 1000;
 	for(var avatarN = 0; avatarN < MAX_AVATARS ; avatarN++){
 		var newAvatarId = 'avatar'+avatarN;
@@ -39,7 +51,7 @@ function insertImage(animationSize) {
 			     "<image id='"+newAvatarId+"' src='"+getInitialAnimationFrameSource(avatarN)+"' title = '"+newAvatarId+"'/>";
 		
 			//schedule first frame change
-			keepTimeHandle[avatarN] = setInterval(function(){nextFrame(newAvatarId)},animationSpeed[avatarN]);
+			keepTimeHandle[avatarN] = setInterval(function(){nextFrame(newAvatarId,avatarN)},animationSpeed[avatarN]);
 
 			//console.log(newAvatarId + " added");
 			break;	//exit the for loop
@@ -54,20 +66,21 @@ function getInitialAnimationFrameSource(avatarN){
 
 // get file source for given frame of animation
 function getAnimationFrameSource(avatarN,frameN){
-	return "images/"+animationSize+"/"+ANIMATION_ACTIVITY[avatarN]+"/"+frameN+".png";
+	return "images/"+ANIMATION_SIZE+"/"+ANIMATION_ACTIVITY[avatarN]+"/"+frameN+".png";
 }
 
 // insert given number of avatars into document
 function insertNAvatars(nAvatars){
 	for(var i = 0; i < nAvatars ; i++){
-		insertImage(animationSize);
+		//insertImage();
+		insertAvatarCanvas("avatar"+i,i);
 	}
 }
 
 // insert hard-coded number of avatars into document
 function insertAvatars(){
-	var nAvatars = 200;
-	insertNAvatars(200);
+	var nAvatars = 100;
+	insertNAvatars(nAvatars);
 }
 
 function insertCountlyAvatars(){

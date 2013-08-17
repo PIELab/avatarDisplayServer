@@ -1,7 +1,7 @@
 //animation image size:
 //var animationSize = "ani_vSmall";
 //var animationSize = "anim_small";
-var animationSize = "animations";
+var ANIMATION_SIZE = "animations";
 
 // handles for animation delays:
 var keepTimeHandle = new Array();

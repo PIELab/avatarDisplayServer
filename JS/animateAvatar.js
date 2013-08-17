@@ -12,48 +12,25 @@ function oneFrameAll() {
 			return;
 		} else {
 			//currentAvatar.src = "images/animations/running/0.png";
-			nextFrame(currentAvatar);
+			nextFrame(currentAvatarID,i);
 		}
 	}
 }
 
 // move given avatar one frame
-function nextFrame(avatarIdToChange){
-	var avatarElementToChange = document.getElementById(avatarIdToChange);
-	try{	//if .src works, it is an image (old method)
-		var splitSrc = avatarElementToChange.src.split("/");
-		//console.log(splitSrc);
-		//[0] = "http:",
-		//[1] = "",
-		//[2] = "localhost:8000",
-		//[3] = "images",
-		//[4] = "ani_vSmall",
-		//[5] = "running",
-		//[6] = "0.png"
-		//I don't really need 0-2, 3-5 need to stay the same, 6 needs to be changed
-		var oldFrameN = splitSrc[6].substr(0,splitSrc[6].length-4);	//remove extension
-		var newFrameN = parseInt(oldFrameN) + 1;
+function nextFrame(avatarIdToChange,avatarN){
+//	console.log(avatarIdToChange);
+//	console.log(avatarN);
+	var canvas=document.getElementById(avatarIdToChange);
+	var ctx=canvas.getContext('2d');
 
-		var newSrc = splitSrc[3] +'/'+ splitSrc[4] +'/'+ splitSrc[5] +'/'+ newFrameN + ".png";
-		var animationName = newSrc.split("/")[2];
-		if ( ! UrlExists(animationName,newFrameN) ){	//if animation not found
-			 newSrc = splitSrc[3] +'/'+ splitSrc[4] +'/'+ splitSrc[5]+'/'+"0.png";//reset to 0 animation
-		}
-		avatarElementToChange.src=newSrc;
-		//console.log(avatarElementToChange.id + " frame changed to " + avatarElementToChange.src);
-	}catch(err){	//if fails, element is <canvas> (new method)
-		avatarN = avatarIdToChange.split("r")[1];	//assumes avatarId is like 'avatar2'
-		var canvas=document.getElementById(avatarIdToChange);
-		var ctx=canvas.getContext('2d');
-
-		animationFrame[avatarN] += 1;
-		if ( ! UrlExists(ANIMATION_ACTIVITY[avatarN],animationFrame[avatarN]) ){
-			animationFrame[avatarN] = 0;
-		}
-
-		ctx.clearRect(0, 0, canvas.width, canvas.height); //clear canvas
-		drawAvatar(ctx, avatarN, getAnimationFrameSource(avatarN,animationFrame[avatarN]));
+	animationFrame[avatarN] += 1;
+	if ( ! UrlExists(ANIMATION_ACTIVITY[avatarN],animationFrame[avatarN]) ){
+		animationFrame[avatarN] = 0;
 	}
+
+	ctx.clearRect(0, 0, canvas.width, canvas.height); //clear canvas
+	drawAvatar(ctx, avatarN, getAnimationFrameSource(avatarN,animationFrame[avatarN]));
 } 
 
 // check for file exists at url
