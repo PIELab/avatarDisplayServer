@@ -35,8 +35,8 @@ function nextFrame(avatarIdToChange){
 		var newFrameN = parseInt(oldFrameN) + 1;
 
 		var newSrc = splitSrc[3] +'/'+ splitSrc[4] +'/'+ splitSrc[5] +'/'+ newFrameN + ".png";
-
-		if ( ! UrlExists(newSrc,newFrameN) ){	//if animation not found
+		var animationName = newSrc.split("/")[2];
+		if ( ! UrlExists(animationName,newFrameN) ){	//if animation not found
 			 newSrc = splitSrc[3] +'/'+ splitSrc[4] +'/'+ splitSrc[5]+'/'+"0.png";//reset to 0 animation
 		}
 		avatarElementToChange.src=newSrc;
@@ -46,15 +46,19 @@ function nextFrame(avatarIdToChange){
 		var canvas=document.getElementById(avatarIdToChange);
 		var ctx=canvas.getContext('2d');
 
+		animationFrame[avatarN] += 1;
+		if ( ! UrlExists(ANIMATION_ACTIVITY[avatarN],animationFrame[avatarN]) ){
+			animationFrame[avatarN] = 0;
+		}
+
 		ctx.clearRect(0, 0, canvas.width, canvas.height); //clear canvas
 		drawAvatar(ctx, avatarN, getAnimationFrameSource(avatarN,animationFrame[avatarN]));
 	}
 } 
 
 // check for file exists at url
-function UrlExists(url, frameN){
+function UrlExists(animationName, frameN){
 	//this is a quick hack which works much better:
-	var animationName = url.split("/")[2];
 	var maxFrames = 5;
 	if (animationName == "running"){
 		maxFrames = 11;
@@ -71,7 +75,7 @@ function UrlExists(url, frameN){
 	}else if(animationName == "sleeping"){
 		maxFrames = 9;
 	}else{
-		console.warn("animationName '" + animationName +"' not recognized; from "+url.split("/") );
+		console.warn("animationName '" + animationName +"' not recognized;" );
 		maxFrames = 3;	//min of all
 	}
 
