@@ -5,7 +5,7 @@ function drawAvatarAnim(avatarN){
 	var canvas=document.getElementById(newAvatarId);
 	var ctx=canvas.getContext('2d');
 
-	drawAvatar(ctx,avatarN,getInitialAnimationFrameSource(avatarN));
+	drawAvatar(ctx,avatarN,getAnimationFrameSource(avatarN,0));
 
 	//schedule first frame change
 	keepTimeHandle[avatarN] = setInterval(function(){nextFrame(newAvatarId,avatarN)},animationSpeed[avatarN]);
@@ -36,32 +36,6 @@ function insertAvatarCanvas(newAvatarId,avatarN){
 
 		//console.log(newAvatarId + " added");
 	}
-}
-
-// insert avatar image into document
-function insertImage() {
-	var MAX_AVATARS = 1000;
-	for(var avatarN = 0; avatarN < MAX_AVATARS ; avatarN++){
-		var newAvatarId = 'avatar'+avatarN;
-		if(document.getElementById(newAvatarId) == null) {	//if avatar does not yet exist
-			// === check for animationSpeed low enough to be passive and set alternative to splitSrc[5]
-
-			//insert new avatar
-			document.getElementById('avatars').innerHTML+=
-			     "<image id='"+newAvatarId+"' src='"+getInitialAnimationFrameSource(avatarN)+"' title = '"+newAvatarId+"'/>";
-		
-			//schedule first frame change
-			keepTimeHandle[avatarN] = setInterval(function(){nextFrame(newAvatarId,avatarN)},animationSpeed[avatarN]);
-
-			//console.log(newAvatarId + " added");
-			break;	//exit the for loop
-		}
-	}
-}
-
-// get file source for first frame of animation
-function getInitialAnimationFrameSource(avatarN){
-	return getAnimationFrameSource(avatarN,0);
 }
 
 // get file source for given frame of animation
