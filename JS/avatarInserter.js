@@ -8,7 +8,7 @@ function drawAvatarAnim(avatarN){
 	drawAvatar(ctx,avatarN,getAnimationFrameSource(avatarN,0));
 
 	//schedule first frame change
-	keepTimeHandle[avatarN] = setInterval(function(){nextFrame(newAvatarId,avatarN)},animationSpeed[avatarN]);
+	TIMER_HANDLE[avatarN] = setInterval(function(){nextFrame(newAvatarId,avatarN)},ANIMATION_SPEED[avatarN]);
 
 	ctx.fillStyle='#FF0000';
 	ctx.fillRect(1,5,80,100);
@@ -32,7 +32,7 @@ function insertAvatarCanvas(newAvatarId,avatarN){
 		//insert new avatar
 		document.getElementById('avatars').innerHTML+= newHTML;
 		//schedule first frame change
-		keepTimeHandle[avatarN] = setInterval(function(){nextFrame(newAvatarId,avatarN)},animationSpeed[avatarN]);
+		TIMER_HANDLE[avatarN] = setInterval(function(){nextFrame(newAvatarId,avatarN)},ANIMATION_SPEED[avatarN]);
 
 		//console.log(newAvatarId + " added");
 	}
@@ -53,7 +53,7 @@ function insertNAvatars(nAvatars){
 
 // insert hard-coded number of avatars into document
 function insertAvatars(){
-	var nAvatars = 100;
+	var nAvatars = 20;
 	insertNAvatars(nAvatars);
 }
 

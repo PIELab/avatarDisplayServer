@@ -4,20 +4,20 @@
 var ANIMATION_SIZE = "animations";
 
 // handles for animation delays:
-var keepTimeHandle = new Array();
+var TIMER_HANDLE = new Array();
 
 //animation speeds:
-var animationSpeed = new Array();
+var ANIMATION_SPEED = new Array();
 
 //animation current frame numbers:
-var animationFrame = new Array();
+var CURRENT_FRAME = new Array();
 
 //animation activity names
 var ANIMATION_ACTIVITY = new Array();
 
 for( var i = 0; i < 1000 ; i++){
-	animationSpeed[i] = Math.floor((Math.random()*300)+10);
-	animationFrame[i] = 0;
+	ANIMATION_SPEED[i] = Math.floor((Math.random()*300)+10);
+	CURRENT_FRAME[i] = 0;
 	ANIMATION_ACTIVITY[i] = getAnimationName(i);
 }
 
@@ -28,14 +28,14 @@ function getAnimationName(avatarN){
 	var sleepingMax = 300;
 
 	var animationName = "";
-	if(animationSpeed[avatarN] <= activeMax){
+	if(ANIMATION_SPEED[avatarN] <= activeMax){
 		animationName = randomAnim("active");
-	} else if(animationSpeed[avatarN] <= sedentaryMax){
+	} else if(ANIMATION_SPEED[avatarN] <= sedentaryMax){
 		animationName = randomAnim("passive");
-//			} else if(animationSpeed[avatarN] < sleepingMax){
+//			} else if(ANIMATION_SPEED[avatarN] < sleepingMax){
 ///				animationName = randomAnim("sleeping");
 	} else {
-		console.warn("animationSpeed out of range");
+		console.warn("ANIMATION_SPEED out of range");
 		animationName = "sleeping";
 	}
 	return animationName;

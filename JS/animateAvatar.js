@@ -24,13 +24,13 @@ function nextFrame(avatarIdToChange,avatarN){
 	var canvas=document.getElementById(avatarIdToChange);
 	var ctx=canvas.getContext('2d');
 
-	animationFrame[avatarN] += 1;
-	if ( ! UrlExists(ANIMATION_ACTIVITY[avatarN],animationFrame[avatarN]) ){
-		animationFrame[avatarN] = 0;
+	CURRENT_FRAME[avatarN] += 1;
+	if ( ! UrlExists(ANIMATION_ACTIVITY[avatarN],CURRENT_FRAME[avatarN]) ){
+		CURRENT_FRAME[avatarN] = 0;
 	}
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height); //clear canvas
-	drawAvatar(ctx, avatarN, getAnimationFrameSource(avatarN,animationFrame[avatarN]));
+	drawAvatar(ctx, avatarN, getAnimationFrameSource(avatarN,CURRENT_FRAME[avatarN]));
 } 
 
 // check for file exists at url
