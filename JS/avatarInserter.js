@@ -54,23 +54,7 @@ function getInitialAnimationFrameSource(avatarN){
 
 // get file source for given frame of animation
 function getAnimationFrameSource(avatarN,frameN){
-	var activeMax = 150;
-	var sedentaryMax = 280;
-	var sleepingMax = 300;
-
-	var animationName = "";
-	if(animationSpeed[avatarN] < activeMax){
-		animationName = randomAnim("active");
-	} else if(animationSpeed[avatarN] < sedentaryMax){
-		animationName = randomAnim("passive");
-//			} else if(animationSpeed[avatarN] < sleepingMax){
-///				animationName = randomAnim("sleeping");
-	} else {
-		console.warn("animationSpeed out of range");
-		animationName = "sleeping";
-	}
-
-	return "images/"+animationSize+"/"+animationName+"/"+frameN+".png";
+	return "images/"+animationSize+"/"+ANIMATION_ACTIVITY[avatarN]+"/"+frameN+".png";
 }
 
 // insert given number of avatars into document
@@ -104,31 +88,5 @@ http://testsubdomain.socialvinesolutions.com/o?api_key=f9260de6b6495ee559b8f9511
 
 }
 
-// return random animation name for given activity type
-function randomAnim(type){
-	var animationName = "";
-	var randomNumber = Math.floor((Math.random()*3)+1);	//get random between 1 & 3
-	if(type == "active"){
-		if(randomNumber == 1){
-			animationName = 'running';
-		}else if(randomNumber ==2){
-			animationName = 'basketball';
-		}else if(randomNumber ==3){
-			animationName = 'bicycling';
-		}
-	} else if (type == "passive"){
-		if(randomNumber == 1){
-			animationName = 'onComputer';
-		}else if(randomNumber ==2){
-			animationName = 'watchingTV';
-		}else if(randomNumber ==3){
-			animationName = 'videoGames';
-		}
-	} else if (type == "sleeping"){
-		animationName = 'sleeping';
-	} else{
-		console.warn("animation type not recognized");
-	}
-	return animationName;
-}
+
 
