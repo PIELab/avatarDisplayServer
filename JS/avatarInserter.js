@@ -24,7 +24,7 @@ function drawAvatar(ctx,avatarN,source){
 
 function insertAvatarCanvas(newAvatarId,avatarN){
 	if(document.getElementById(newAvatarId) == null) {	//if avatar does not yet exist
-		var newHTML = '<canvas id="'+newAvatarId+'" height="300" width="300" onLoad="drawAvatarAnim('+avatarN+')" title="'+newAvatarId+'" </canvas>';
+		var newHTML = '<canvas id="'+newAvatarId+'" height="300" width="300" onLoad="drawAvatarAnim('+avatarN+')" title="'+newAvatarId+'" onClick=embiggenAvatar("'+newAvatarId+'") </canvas>';
 		//console.log(newHTML);
 		//insert new avatar
 		document.getElementById('avatars').innerHTML+= newHTML;
