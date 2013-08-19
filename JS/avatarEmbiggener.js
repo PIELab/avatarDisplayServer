@@ -1,5 +1,5 @@
 function embiggenAvatar(avatarId){
-	console.log(avatarId);
+	//console.log(avatarId);
 	var BIG = '500';
 	var SMALL = '300';
 	var avatarCanvas = document.getElementById(avatarId);

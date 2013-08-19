@@ -6,15 +6,27 @@
 	<!-- load globals -->
 	<script type="text/javascript" src="JS/globals.js"></script>
 	<!-- load countly JSON -->
+	<script type="text/javascript" src="http://testsubdomain.socialvinesolutions.com/o?api_key=f9260de6b6495ee559b8f951109d3959&app_id=510892b53f3f90f302000001&method=events&event=physicalActivity&action=refresh"> </script>
+
 	<script type="text/javascript">
-		var countlyData
-		var JSONurl="http://testsubdomain.socialvinesolutions.com/o?api_key=f9260de6b6495ee559b8f951109d3959&app_id=510892b53f3f90f302000001&method=events&event=physicalActivity&action=refresh";
+		var countlyData;
+		var theData;
+		var JSONurl="http://testsubdomain.socialvinesolutions.com/o"+
+			"?api_key=f9260de6b6495ee559b8f951109d3959"+
+			"&app_id=510892b53f3f90f302000001"+
+			"&method=events"+
+			"&event=physicalActivity"+
+			"&action=refresh";
 		countlyData = $.ajax({
-		  dataType: "json",
-		  url: JSONurl,
-		  data: countlyData,
-		  success: function(){}
+			dataType: "jsonp",
+			url: JSONurl,
+			data: theData,
+			success: function(){
+
+			}
 		});
+		console.log(countlyData);
+		console.log(theData);
 	</script>
 
 	<!-- load javascript functions -->
