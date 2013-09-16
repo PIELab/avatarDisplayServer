@@ -1,0 +1,82 @@
+<html>
+<head>
+	<!-- load libraries -->
+	<script type="text/javascript" src="JS/jquery-1.9.1.min.js"></script>
+	
+	<!-- load globals -->
+	<script type="text/javascript" src="JS/globals.js"></script>
+
+	<!-- load countly JSON  -->
+	<script type="text/javascript">
+		var JSONurl="http://testsubdomain.socialvinesolutions.com/o"+
+			"?api_key=f9260de6b6495ee559b8f951109d3959"+
+			"&app_id=510892b53f3f90f302000001"+
+			"&method=events"+
+			"&event=physicalActivity"+
+			"&action=refresh";
+		$.ajax({
+			type: 'GET',
+			dataType: "JSONP",
+			url: JSONurl,
+			success: function(data){
+				//these are current time info: (TODO: get these programmatically)
+				var hr  = 21;
+				var day = 15;
+				var mon = 9;
+				var yr  = 2013
+
+				console.log("all data:");
+				console.log(data);
+
+				//print out each UID
+				console.log(data[0]._id);	//this should be "UID"
+				for (uid in data[0][yr][mon][day]){
+					console.log(uid);
+				}
+
+				//print out current population activity summary 
+ 				console.log("current hour's data:");
+				console.log(data[1][yr][mon][day][hr]);
+				var sum   = data[1][yr][mon][day][hr].s;
+				var count = data[1][yr][mon][day][hr].c;
+				var activLevel = sum/count;
+
+				console.log("activeLevel:"+activLevel);
+			}
+		});
+	</script>
+
+	<!-- load javascript functions -->
+	<script src="JS/avatarEmbiggener.js"></script>
+	<script src="JS/avatarInserter.js"></script>
+	<script src="JS/animateAvatar.js"></script>
+
+	<!-- define what the page does onload -->
+	<script type="text/javascript">
+		function startup(){
+			generateRandomAvatars();
+			insertAvatars();
+		}
+	</script>
+
+</head>
+
+<body onload="startup()"  bgcolor="#C4C4C0">
+
+	<h1>Lots of Random Avatars:</h1>
+	<div id="avatars">
+		<!-- will look something like:
+		<canvas id="avatar0" height="300" width="300" onclick="drawAvatarAnim()"></canvas>
+			in older versions:
+		<canvas id="avatar1" height="100" width="100"></canvas>
+			even older:
+		<image id='avatar2' src='images/animations/running/0.png' /> -->
+	</div>
+
+	<button type="button" onclick="insertImage(animationSize)">add avatar</button>
+<!--	<button type="button" onclick="oneFrameAll()">animate avatars</button>
+-->
+
+<input type="submit" name="increment" value="Increment" />
+</body>
+</html>

@@ -22,6 +22,7 @@ function drawAvatar(ctx,avatarN,source){
 	imageObj.src = source;
 }
 
+// inserts an avatar with given id if does not already exist, and uses avatar number to fetch from global data
 function insertAvatarCanvas(newAvatarId,avatarN){
 	if(document.getElementById(newAvatarId) == null) {	//if avatar does not yet exist
 		var newHTML = '<canvas id="'+newAvatarId+'" height="300" width="300" onLoad="drawAvatarAnim('+avatarN+')" title="'+newAvatarId+'" onClick=embiggenAvatar("'+newAvatarId+'") </canvas>';

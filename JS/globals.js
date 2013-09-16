@@ -18,11 +18,14 @@ var ANIMATION_ACTIVITY = new Array();
 //avatar face image locations
 var FACE_IMAGE = new Array();
 
-for( var i = 0; i < 1000 ; i++){
-	ANIMATION_SPEED[i] = Math.floor((Math.random()*300)+10);
-	CURRENT_FRAME[i] = 0;
-	ANIMATION_ACTIVITY[i] = getAnimationName(i);
-	FACE_IMAGE[i] = 'images/faces/default.png';
+//generates randomized avatars for demo purposes
+function generateRandomAvatars(){
+	for( var i = 0; i < 1000 ; i++){
+		ANIMATION_SPEED[i] = Math.floor((Math.random()*300)+10);
+		CURRENT_FRAME[i] = 0;
+		ANIMATION_ACTIVITY[i] = getAnimationName(i);
+		FACE_IMAGE[i] = 'images/faces/default.png';
+	}
 }
 
 // get animation name for given avatar number
