@@ -70,7 +70,6 @@ function insertCountlyAvatars(){
 	for segmented count & sum (the most recent version):
 http://testsubdomain.socialvinesolutions.com/o?api_key=f9260de6b6495ee559b8f951109d3959&app_id=510892b53f3f90f302000001&method=events&event=physicalActivity&action=refresh
 */
-
 }
 
 

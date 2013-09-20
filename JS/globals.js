@@ -42,7 +42,7 @@ function getAnimationName(avatarN){
 //			} else if(ANIMATION_SPEED[avatarN] < sleepingMax){
 ///				animationName = randomAnim("sleeping");
 	} else {
-		console.warn("ANIMATION_SPEED out of range");
+		console.warn(avatarN+" ANIMATION_SPEED "+ANIMATION_SPEED[avatarN]+" out of range");
 		animationName = "sleeping";
 	}
 	return animationName;

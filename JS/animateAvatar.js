@@ -1,5 +1,5 @@
 var maxAvatars = 1000;
-
+/*
 // this function moves all avatars forward one frame
 function oneFrameAll() {
 	for (var i=1 ; i < maxAvatars ; i++){
@@ -16,6 +16,7 @@ function oneFrameAll() {
 		}
 	}
 }
+*/
 
 // move given avatar one frame
 function nextFrame(avatarIdToChange,avatarN){

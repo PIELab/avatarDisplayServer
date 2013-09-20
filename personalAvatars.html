@@ -19,9 +19,9 @@
 			dataType: "JSONP",
 			url: JSONurl,
 			success: function(data){
-				//these are current time info: (TODO: get these programmatically)
-				var hr  = 21;	//this can be any hour so far today, but the rest (y,m,d) MUST be today only
-				var day = 15;
+				//these MUST be the current time: (TODO: get these programmatically)
+				//var hr  = 1;	//this can be any hour so far today, but the rest (y,m,d) MUST be today only
+				var day = 20;	
 				var mon = 9;
 				var yr  = 2013
 
@@ -29,12 +29,12 @@
 				console.log(data);
 
 				//print out current population activity summary 
- 				console.log("current hour's data:");
-				console.log(data[1][yr][mon][day][hr]);
-				var sum   = data[1][yr][mon][day][hr].s;
-				var count = data[1][yr][mon][day][hr].c;
+ 				console.log("current day's data:");
+				console.log(data[1][yr][mon][day]);
+				var sum   = data[1][yr][mon][day].s;
+				var count = data[1][yr][mon][day].c;
 				ACTIVE_LEVEL = sum/count;
-				console.log("activeLevel:"+ACTIVE_LEVEL);
+				console.log("activeLevel="+sum+"/"+count+"="+ACTIVE_LEVEL);
 
 				//print out each UID
 				console.log(data[0]._id);	//this should be "UID"
@@ -46,9 +46,8 @@
 					//set global stuff
 					ANIMATION_SPEED[i] = Math.floor((ACTIVE_LEVEL*300)+10);
 					CURRENT_FRAME[i] = 0;
-					ANIMATION_ACTIVITY[i] = getAnimationName(0);
-					FACE_IMAGE[i] = 'images/faces/default.png';	//TODO: this needs to be face image from server
-
+					ANIMATION_ACTIVITY[i] = getAnimationName(i);
+					FACE_IMAGE[i] = 'http://testsubdomain.socialvinesolutions.com:8787/'+uid+'.png';
 					insertAvatarCanvas(avatarName, i);
 					i+=1;
 				}
