@@ -8,12 +8,25 @@
 
 	<!-- load countly JSON  -->
 	<script type="text/javascript">
+		function fps2delay(fps){
+		// converts given fps value and converts it to a delay time in ms
+			delay = 1000.0/fps
+			if(delay <= 0 || delay == Infinity){
+				return 300;	//slowest fps
+			}else{
+				return delay;
+			}
+		}
+
+		// get all data for today
+		//http://testsubdomain.socialvinesolutions.com/o?api_key=f9260de6b6495ee559b8f951109d3959&app_id=510892b53f3f90f302000001&method=events&event=physicalActivity&action=refresh
 		var JSONurl="http://testsubdomain.socialvinesolutions.com/o"+
 			"?api_key=f9260de6b6495ee559b8f951109d3959"+
 			"&app_id=510892b53f3f90f302000001"+
 			"&method=events"+
 			"&event=physicalActivity"+
 			"&action=refresh";
+
 		$.ajax({
 			type: 'GET',
 			dataType: "JSONP",
@@ -28,25 +41,35 @@
 				console.log("all data:");
 				console.log(data);
 
+				var tableN = 0;	// first index of the JSON array to use (selects table)
+				// tableN=0 is segmented by UID, tableN=1 is no_segment
+				console.log("using data from _id="+data[tableN]._id)
+
 				//print out current population activity summary 
  				console.log("current day ("+yr+'-'+mon+'-'+day+' '+hr+":00) data:");
-				console.log(data[1][yr][mon][day]);
-
-				var sum   = data[1][yr][mon][day].s;
-				var count = data[1][yr][mon][day].c;
-				ACTIVE_LEVEL = sum/count;
-				console.log("activeLevel="+sum+"/"+count+"="+ACTIVE_LEVEL);
+				console.log(data[tableN][yr][mon][day]);
 
 				//print out each UID
 				console.log("found "+data[0]._id+"s are:");	//this should print "found UIDs are"
 				var i = 0;
-				for (uid in data[0][yr][mon][day]){
+				for (uid in data[tableN][yr][mon][day]){
 					console.log('\t'+uid);
+
+					var sum   = data[tableN][yr][mon][day][uid].s;
+					var count = data[tableN][yr][mon][day][uid].c;
+					if(sum==undefined){
+						sum=0;
+						ACTIVE_LEVEL = 0;
+					}else{
+						ACTIVE_LEVEL = sum/count*10000;
+					}
+					console.log("\t\tactiveLevel="+sum+"/"+count+"="+ACTIVE_LEVEL);
+
 
 					var avatarName = uid;
 					//set global stuff
-					ANIMATION_SPEED[i] = Math.floor((ACTIVE_LEVEL*300)+10);
-					console.log("\t anim_speed="+ANIMATION_SPEED[i]);
+					ANIMATION_SPEED[i] = Math.floor(fps2delay(ACTIVE_LEVEL));
+					console.log("\t\tanim_speed="+ANIMATION_SPEED[i]);
 					CURRENT_FRAME[i] = 0;
 					ANIMATION_ACTIVITY[i] = getAnimationName(i);
 					FACE_IMAGE[i] = 'http://testsubdomain.socialvinesolutions.com:8787/'+uid+'.png';

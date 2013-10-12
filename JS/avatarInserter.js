@@ -1,7 +1,3 @@
-function fps2delay(fps){
-// converts given fps value and converts it to a delay time in ms
-	return 1000.0/fps
-}
 
 // draw avatar canvas & start animation
 function drawAvatarAnim(avatarN){
@@ -13,7 +9,7 @@ function drawAvatarAnim(avatarN){
 	drawAvatar(ctx,avatarN,getAnimationFrameSource(avatarN,0));
 
 	//schedule first frame change
-	TIMER_HANDLE[avatarN] = setInterval(function(){nextFrame(newAvatarId,avatarN)},fps2delay(ANIMATION_SPEED[avatarN]));
+	TIMER_HANDLE[avatarN] = setInterval(function(){nextFrame(newAvatarId,avatarN)},ANIMATION_SPEED[avatarN]);
 }
 
 // draw avatar onto given canvas
@@ -35,7 +31,7 @@ function insertAvatarCanvas(newAvatarId,avatarN){
 		//insert new avatar
 		document.getElementById('avatars').innerHTML+= newHTML;
 		//schedule first frame change
-		TIMER_HANDLE[avatarN] = setInterval(function(){nextFrame(newAvatarId,avatarN)},fps2delay(ANIMATION_SPEED[avatarN]));
+		TIMER_HANDLE[avatarN] = setInterval(function(){nextFrame(newAvatarId,avatarN)},ANIMATION_SPEED[avatarN]);
 
 		//console.log(newAvatarId + " added");
 	}

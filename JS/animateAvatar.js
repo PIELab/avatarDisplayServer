@@ -123,7 +123,7 @@ function drawFace(context, avatarN){
 
 
 	var imageObj = new Image();
-	imageObj.src = FACE_IMAGE[avatarN];
+	
 	imageObj.onload = function() {
 		context.translate(xLoc-s/2, yLoc-s/2);
 		context.rotate(r);
@@ -131,6 +131,11 @@ function drawFace(context, avatarN){
 		context.rotate(-r);
 		context.translate(-xLoc+s/2, -yLoc+s/2);
 	};
+	imageObj.onerror= function() {
+		console.log('using default face');
+		FACE_IMAGE[avatarN] = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/718smiley-jonathan.svg/600px-718smiley-jonathan.svg.png';
+	};
+	imageObj.src = FACE_IMAGE[avatarN];
 }
 
 // check for file exists at url
