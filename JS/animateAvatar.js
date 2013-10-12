@@ -38,6 +38,7 @@ function nextFrame(avatarIdToChange,avatarN){
 
 // draw face onto given avatar
 function drawFace(context, avatarN){
+	context.save();
 	//TODO: these values (except rotation) should be scaled by ANIMATION_SIZE
 	var xLoc = 0;
 	var yLoc = 0;
@@ -122,7 +123,6 @@ function drawFace(context, avatarN){
 			console.warn("drawFace() does not recognize activity name"+ANIMATION_ACTIVITY[avatarN])
 		}
 
-
 	var imageObj = new Image();
 	
 	imageObj.onload = function() {
@@ -137,6 +137,7 @@ function drawFace(context, avatarN){
 		FACE_IMAGE[avatarN] = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/718smiley-jonathan.svg/600px-718smiley-jonathan.svg.png';
 	};
 	imageObj.src = FACE_IMAGE[avatarN];
+	context.restore();
 }
 
 // check for file exists at url

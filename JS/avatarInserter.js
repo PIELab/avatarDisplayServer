@@ -14,6 +14,7 @@ function drawAvatarAnim(avatarN){
 
 // draw avatar onto given canvas
 function drawAvatar(ctx,avatarN,source){
+	ctx.save();
 	var newAvatarId = 'avatar'+avatarN;
 
 	var imageObj = new Image();
@@ -21,6 +22,7 @@ function drawAvatar(ctx,avatarN,source){
    	ctx.drawImage(imageObj,0, 0);
    };
 	imageObj.src = source;
+	ctx.restore();
 }
 
 // inserts an avatar with given id if does not already exist, and uses avatar number to fetch from global data
