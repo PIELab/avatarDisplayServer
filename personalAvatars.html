@@ -38,14 +38,15 @@
 				console.log("activeLevel="+sum+"/"+count+"="+ACTIVE_LEVEL);
 
 				//print out each UID
-				console.log(data[0]._id);	//this should be "UID"
+				console.log("found "+data[0]._id+"s are:");	//this should print "found UIDs are"
 				var i = 0;
 				for (uid in data[0][yr][mon][day]){
-					console.log(uid);
+					console.log('\t'+uid);
 
 					var avatarName = uid;
 					//set global stuff
 					ANIMATION_SPEED[i] = Math.floor((ACTIVE_LEVEL*300)+10);
+					console.log("\t anim_speed="+ANIMATION_SPEED[i]);
 					CURRENT_FRAME[i] = 0;
 					ANIMATION_ACTIVITY[i] = getAnimationName(i);
 					FACE_IMAGE[i] = 'http://testsubdomain.socialvinesolutions.com:8787/'+uid+'.png';
