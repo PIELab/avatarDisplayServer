@@ -19,18 +19,19 @@
 			dataType: "JSONP",
 			url: JSONurl,
 			success: function(data){
-				//these MUST be the current time: (TODO: get these programmatically)
-				//var hr  = 1;	//this can be any hour so far today, but the rest (y,m,d) MUST be today only
-				var day = 20;	
-				var mon = 9;
-				var yr  = 2013
+				var dt = new Date();
+				var hr  = dt.getHours();	//this can be any hour so far today, but the rest (y,m,d) MUST be today only
+				var day =  dt.getDate();
+				var mon = dt.getMonth()+1;
+				var yr  = dt.getFullYear();
 
 				console.log("all data:");
 				console.log(data);
 
 				//print out current population activity summary 
- 				console.log("current day's data:");
+ 				console.log("current day ("+yr+'-'+mon+'-'+day+' '+hr+":00) data:");
 				console.log(data[1][yr][mon][day]);
+
 				var sum   = data[1][yr][mon][day].s;
 				var count = data[1][yr][mon][day].c;
 				ACTIVE_LEVEL = sum/count;
