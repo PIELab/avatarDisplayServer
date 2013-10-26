@@ -44,22 +44,34 @@
 				console.log("all data:");
 				console.log(data);
 
-				var tableN = 0;	// first index of the JSON array to use (selects table)
-				// tableN=0 is segmented by UID, tableN=1 is no_segment
-				console.log("using data from _id="+data[tableN]._id)
+				function getTableN(dataObj,tableName){
+				// finds the table index for the given tableName in data object 
+					var N_TABLES = 2 // number of tables in data object
+					for (tableN = 0; tableN < N_TABLES; tableN++){
+						if ( dataObj[tableN]._id == tableName){
+							return tableN
+						}
+					} // else: 
+					console.log("unknown table id '"+data[tableN]._id+"'")
+				}
+
+				var no_seg_index = getTableN(data,"no-segment")
+				var UID_index    = getTableN(data,"UID")
+
+				console.log("using data from _id="+data[UID_index]._id)
 
 				//print out current population activity summary 
  				console.log("current day ("+yr+'-'+mon+'-'+day+' '+hr+":00) data:");
-				console.log(data[tableN][yr][mon][day]);
+				console.log(data[no_seg_index][yr][mon][day]);
 
 				//print out each UID
-				console.log("found "+data[0]._id+"s are:");	//this should print "found UIDs are"
+				console.log("found "+data[UID_index]._id+"s are:");	//this should print "found UIDs are"
 				var i = 0;
-				for (uid in data[tableN][yr][mon][day]){
+				for (uid in data[UID_index][yr][mon][day]){
 					console.log('\t'+uid);
 
-					var sum   = data[tableN][yr][mon][day][uid].s;
-					var count = data[tableN][yr][mon][day][uid].c;
+					var sum   = data[UID_index][yr][mon][day][uid].s;
+					var count = data[UID_index][yr][mon][day][uid].c;
 					if(sum==undefined){
 						sum=0;
 						ACTIVITY_LEVEL[i] = 0;
