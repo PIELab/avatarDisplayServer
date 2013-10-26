@@ -103,7 +103,11 @@ function drawFace(context, avatarN){
 			r = -7.0 * DEG2RAD;
 		// === ASLEEP ===
 		} else if(ANIMATION_ACTIVITY[avatarN] == "sleeping"){
-			s = 0;	//size 0 so it won't show
+			xLoc = center+80;
+			yLoc = center-29;
+			s = 35;
+			r = 90.0 * DEG2RAD;
+			//s = 0;	//size 0 so it won't show
 		// === PASSIVE ===
 		} else if(ANIMATION_ACTIVITY[avatarN] == "onComputer"){
 			xLoc = center+37;
