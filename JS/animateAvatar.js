@@ -30,7 +30,7 @@ function nextFrame(avatarIdToChange,avatarN){
 	if ( ! UrlExists(ANIMATION_ACTIVITY[avatarN],CURRENT_FRAME[avatarN]) ){
 		CURRENT_FRAME[avatarN] = 0;
 	}
-	drawAvatar(ctx, avatarN, getAnimationFrameSource(avatarN,CURRENT_FRAME[avatarN]));
+	drawAvatar(ctx, avatarN, getAnimationFrameSource(avatarN,CURRENT_FRAME[avatarN]), avatarIdToChange);
 	drawFace(ctx,avatarN);
 	ctx.restore()
 } 

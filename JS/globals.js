@@ -22,10 +22,14 @@ var ANIMATION_ACTIVITY = new Array();
 //avatar face image locations
 var FACE_IMAGE = new Array();
 
-//generates randomized avatars for demo purposes
+// activity levels for each avatar
+var ACTIVITY_LEVEL = new Array();
+
+//generates randomized avatars for demo purposes, default values should be overwritten in later versions
 function generateRandomAvatars(){
 	for( var i = 0; i < 1000 ; i++){
 		ANIMATION_SPEED[i] = Math.floor((Math.random()*300)+10);
+		ACTIVITY_LEVEL[i] = ANIMATION_SPEED[i];
 		CURRENT_FRAME[i] = 0;
 		ANIMATION_ACTIVITY[i] = getAnimationName(i);
 		FACE_IMAGE[i] = 'images/faces/default.png';

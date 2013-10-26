@@ -13,14 +13,18 @@ function drawAvatarAnim(avatarN){
 }
 
 // draw avatar onto given canvas
-function drawAvatar(ctx,avatarN,source){
+function drawAvatar(ctx,avatarN,source,avatarName){
 	ctx.save();
 	var newAvatarId = 'avatar'+avatarN;
+
+	ctx.fillStyle = "black";
+	ctx.font = "bold 50px Arial";
 
 	var imageObj = new Image();
    imageObj.onload = function() {
 		ctx.clearRect(0, 0, SMALL, SMALL); //clear canvas
    	ctx.drawImage(imageObj,0, 0);
+		ctx.fillText(avatarName+" activity: "+ACTIVITY_LEVEL[avatarN], 30, SMALL-30);
    };
 	imageObj.src = source;
 

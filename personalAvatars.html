@@ -62,16 +62,16 @@
 					var count = data[tableN][yr][mon][day][uid].c;
 					if(sum==undefined){
 						sum=0;
-						ACTIVE_LEVEL = 0;
+						ACTIVITY_LEVEL[i] = 0;
 					}else{
-						ACTIVE_LEVEL = sum/count*30;
+						ACTIVITY_LEVEL[i] = sum/count*30;
 					}
-					console.log("\t\tactiveLevel="+sum+"/"+count+"="+ACTIVE_LEVEL);
+					console.log("\t\tactiveLevel="+sum+"/"+count+"="+ACTIVITY_LEVEL[i]);
 
 
 					var avatarName = uid;
 					//set global stuff
-					ANIMATION_SPEED[i] = Math.floor(fps2delay(ACTIVE_LEVEL));
+					ANIMATION_SPEED[i] = Math.floor(fps2delay(ACTIVITY_LEVEL[i]));
 					console.log("\t\tanim_speed="+ANIMATION_SPEED[i]);
 					CURRENT_FRAME[i] = 0;
 					ANIMATION_ACTIVITY[i] = getAnimationName(i);
