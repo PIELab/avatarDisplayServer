@@ -19,9 +19,11 @@ function drawAvatar(ctx,avatarN,source){
 
 	var imageObj = new Image();
    imageObj.onload = function() {
+		ctx.clearRect(0, 0, SMALL, SMALL); //clear canvas
    	ctx.drawImage(imageObj,0, 0);
    };
 	imageObj.src = source;
+
 	ctx.restore();
 }
 

@@ -1,6 +1,10 @@
 //animation image size:
 //var animationSize = "ani_vSmall";
 //var animationSize = "anim_small";
+
+var BIG = '500';
+var SMALL = '300';
+
 var ANIMATION_SIZE = "animations";
 
 // handles for animation delays:
