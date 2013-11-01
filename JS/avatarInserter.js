@@ -15,15 +15,21 @@ function drawAvatarAnim(avatarN){
 // draw avatar onto given canvas
 function drawAvatar(ctx,avatarN,source,avatarName){
 	var newAvatarId = 'avatar'+avatarN;
-
-	ctx.fillStyle = "black";
-	ctx.font = "bold 50px Arial";
+	var pad = 30;	//size of padding aroud starting text
 
 	var imageObj = new Image();
    imageObj.onload = function() {
 		ctx.clearRect(0, 0, SMALL, SMALL); //clear canvas
    	ctx.drawImage(imageObj,0, 0);
-		ctx.fillText(avatarName+" activity: "+ACTIVITY_LEVEL[avatarN], 30, SMALL-30);
+		ctx.fillStyle = "black";
+		ctx.font = "bold 20px Arial";
+		var texSize = 20; //for spacing, should match above in ctx.font
+		var newlPad = 5;	//spacing between lines of text
+		var x = pad;
+		var y = SMALL-pad;
+		ctx.fillText(avatarName, x, y);
+		y += texSize + newlPad;
+		ctx.fillText(" activity: "+ACTIVITY_LEVEL[avatarN], x, y);
    };
 	imageObj.src = source;
 }
