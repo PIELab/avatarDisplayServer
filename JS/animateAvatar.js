@@ -23,21 +23,18 @@ function nextFrame(avatarIdToChange,avatarN){
 //	console.log(avatarIdToChange);
 //	console.log(avatarN);
 	var canvas=document.getElementById(avatarIdToChange);
-	var ctx=canvas.getContext('2d');
-	ctx.save()
 
 	CURRENT_FRAME[avatarN] += 1;
 	if ( ! UrlExists(ANIMATION_ACTIVITY[avatarN],CURRENT_FRAME[avatarN]) ){
 		CURRENT_FRAME[avatarN] = 0;
 	}
-	drawAvatar(ctx, avatarN, getAnimationFrameSource(avatarN,CURRENT_FRAME[avatarN]), avatarIdToChange);
-	drawFace(ctx,avatarN);
-	ctx.restore()
+	drawAvatar(canvas, avatarN, getAnimationFrameSource(avatarN,CURRENT_FRAME[avatarN]), avatarIdToChange);
+	drawFace(canvas,avatarN);
 } 
 
 // draw face onto given avatar
-function drawFace(context, avatarN){
-	context.save();
+function drawFace(canvas, avatarN){
+	var context=canvas.getContext('2d');
 	//TODO: these values (except rotation) should be scaled by ANIMATION_SIZE
 	var xLoc = 0;
 	var yLoc = 0;
@@ -140,7 +137,6 @@ function drawFace(context, avatarN){
 		FACE_IMAGE[avatarN] = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/718smiley-jonathan.svg/600px-718smiley-jonathan.svg.png';
 	};
 	imageObj.src = FACE_IMAGE[avatarN];
-	context.restore();
 }
 
 // check for file exists at url

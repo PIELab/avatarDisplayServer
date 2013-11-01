@@ -13,7 +13,8 @@ function drawAvatarAnim(avatarN){
 }
 
 // draw avatar onto given canvas
-function drawAvatar(ctx,avatarN,source,avatarName){
+function drawAvatar(canvas,avatarN,source,avatarName){
+	var ctx=canvas.getContext('2d');
 	var newAvatarId = 'avatar'+avatarN;
 	var pad = 30;	//size of padding aroud starting text
 
