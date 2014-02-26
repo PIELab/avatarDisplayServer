@@ -1,7 +1,7 @@
 <html>
 <head>
 	<!-- auto-refresh: n = seconds -->
-	<meta http-equiv="refresh" content="3600" />
+	<meta http-equiv="refresh" content="30" />
 
 	<!-- load libraries -->
 	<script type="text/javascript" src="JS/jquery-1.9.1.min.js"></script>
@@ -76,7 +76,8 @@
 						sum=0;
 						ACTIVITY_LEVEL[i] = 0;
 					}else{
-						ACTIVITY_LEVEL[i] = sum/count*50;
+						var scaler = 140;
+						ACTIVITY_LEVEL[i] = sum/count*scaler;
 					}
 					console.log("\t\tactiveLevel="+sum+"/"+count+"="+ACTIVITY_LEVEL[i]);
 
